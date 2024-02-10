@@ -1,20 +1,23 @@
 import speech_recognition as sr
 from tkinter import *
 
+frase = ""  # Initialize the 'frase' variable outside the functions
+
 def reconhecer_fala():
-    microfone = sr.Recognizer() #Habilita o microfone
+    global frase  # Use the global variable
+    microfone = sr.Recognizer()
     with sr.Microphone() as source:
-        microfone.adjust_for_ambient_noise(source)#Reducao de ruido disponivel na speech_recognition
+        microfone.adjust_for_ambient_noise(source)
         print("Diga alguma coisa: ")
-        audio = microfone.listen(source) #guarda o audio falado na variavel 'audio', o audio é finalizado nas pausas grandes
+        audio = microfone.listen(source)
         try:
-            frase = microfone.recognize_google(audio,language='pt-BR') #audio sera interpretado na lingua portuguesa
+            frase = microfone.recognize_google(audio, language='pt-BR')
             print("Você disse: " + frase)
         except:
             print("Não entendi o que você disse!")
-        return frase
 
-def transcresver_arquivo_txt(frase):
+def transcresver_arquivo_txt():
+    global frase  # Use the global variable
     try:
         with open('transcricao.txt', 'w') as arquivo:
            arquivo.write(frase)
