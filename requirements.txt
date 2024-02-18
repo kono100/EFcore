@@ -1,2 +1,5 @@
 PyAudio==0.2.14
 SpeechRecognition==3.10.1
+gtts==2.4.0
+tk==8.6
+pygame==2.5.2
